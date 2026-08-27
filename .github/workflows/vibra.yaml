@@ -1,0 +1,15 @@
+name: Build BK7238 (vibra)
+on:
+  push:
+    branches: ['**']
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: make APP_VERSION=vibra_berry APP_NAME=OpenBK7238 VARIANT=berry OpenBK7238
+      - uses: actions/upload-artifact@v6
+        with:
+          name: OpenBK7238_vibra_berry
+          path: output/vibra_berry/
+          if-no-files-found: error
