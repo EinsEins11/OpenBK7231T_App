@@ -7,9 +7,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v5
-      - run: make APP_VERSION=vibra_berry APP_NAME=OpenBK7238 VARIANT=berry OpenBK7238
+      # Die Versionsnummer muss dem offiziellen Schema folgen: der Beken-Packager
+      # fuellt Groessen- und Pruefsummenfeld im RBL-Header daraus, und bei einem
+      # Namen ohne Zahlen bleiben beide null - der Bootloader verwirft das Image.
+      - run: make APP_VERSION=1.18.303_vibra APP_NAME=OpenBK7238 VARIANT=berry OpenBK7238
       - uses: actions/upload-artifact@v6
         with:
           name: OpenBK7238_vibra_berry
-          path: output/vibra_berry/
+          path: output/1.18.303_vibra/
           if-no-files-found: error
